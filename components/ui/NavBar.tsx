@@ -5,6 +5,9 @@ export default function MainNavBar(){
         <>
             <ul>
                 <li>
+                    <Link href='/'>Home</Link>
+                </li>
+                <li>
                     <Link href="/users">User</Link>
                 </li>
                 <li>

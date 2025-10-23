@@ -6,5 +6,7 @@ export interface User {
     rua: string,
     bairro: string,
     cidade: string,
-    numero_conta: number
+    numero_conta: number,
+    email: string,
+    password:string
 }
