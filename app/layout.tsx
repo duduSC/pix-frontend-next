@@ -30,7 +30,6 @@ export default function RootLayout({
       >
         <MainNavBar></MainNavBar>
         {children}
-        <p>depois</p>
       </body>
     </html>
   );

@@ -1,39 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💠 Pix - Frontend
 
-## Getting Started
+Este projeto é a interface frontend para um sistema de simulação de transferências Pix, desenvolvido como parte do Trabalho Prático da disciplina de Tópicos Especias para Desenvolvimento de Software.
 
-First, run the development server:
+O sistema permite que usuários visualizem chaves Pix, realizem transferências instantâneas, visualizem extratos bancários e gerenciem seus perfis.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Tecnologias Utilizadas
+
+O projeto foi construído utilizando as seguintes tecnologias modernas:
+
+* Next: Framework React para produção.
+
+* React: Biblioteca para construção de interfaces.
+
+* TypeScript: Tipagem estática para maior segurança e produtividade.
+ 
+* Tailwind CSS: Estilização utilitária para design responsivo e ágil.
+ 
+* Lucide React: Biblioteca de ícones leve e moderna.
+ 
+* Zod + React Hook Form: Validação de esquemas e manipulação de formulários.
+ 
+* Cypress: Testes End-to-End (E2E) automatizados.
+
+## ✨ Funcionalidades
+
+### 🔓 Área Pública
+
+Home / Discovery: Consulta pública de chaves Pix por CPF/CNPJ para verificar a existência de usuários.
+
+Login: Autenticação segura com JWT (armazenado via Cookies HttpOnly pelo backend).
+
+### 🔒 Área Logada (Protegida via Middleware)
+
+* **Dashboard / Extrato**:
+    * Visualização de entradas e saídas.
+    * Paginação de transações.
+    * Filtros visuais por data.
+    * Identificação visual de Crédito (Verde) e Débito (Vermelho).
+
+* **Área Pix**:
+    * Realização de transferências instantâneas.
+    * Máscara de moeda (R$) automática.
+    * Validação de saldo e chaves.
+    * Seleção inteligente de chave de origem.
+
+* **Minhas Chaves**:
+    * Listagem de chaves cadastradas.
+    * Criação de novas chaves (Aleatória, CPF, Email, * Telefone).
+    * Exclusão de chaves.    
+    * Botão de "Copiar" para área de transferência.
+
+* **Perfil**:
+    * Visualização de dados cadastrais.
+    * Logout seguro (limpeza de cookies e cache).
+
+## 🛠️ Instalação e Execução
+
+**Pré-requisitos**
+* Node.js (v18 ou superior)
+* NPM ou Yarn
+
+**Passos**
+
+1. Clone o repositório:
+
+```shell
+git clone [https://github.com/seu-usuario/pix-frontend-next.git](https://github.com/seu-usuario/pix-frontend-next.git)
+cd pix-frontend-next
 ```
 
+2. Instale as dependências:
+```shell
+npm install
+# ou
+yarn install
+```
 
-React hook forms
+3. Configure as variáveis de ambiente (se necessário):
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Rode o servidor de desenvolvimento:
+```shell
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. Acesse http://localhost:3000 no seu navegador.
 
-## Learn More
+## 🧪 Testes E2E (Cypress)
 
-To learn more about Next.js, take a look at the following resources:
+O projeto possui testes automatizados configurados para garantir a qualidade das funcionalidades críticas (como exclusão de chaves).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Configuração Especial**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+**Rodando os Testes**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para abrir a interface visual do Cypress:
+```shell
+npx cypress open
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Selecione `E2E Testing` > `Chrome`.
+
+
+## 📂 Estrutura de Pastas
+```
+src/
+├── app/                 # Rotas do Next.js (App Router)
+│   ├── login/           # Página de Login
+│   ├── extrato/         # Página de Extrato Bancário
+│   ├── chaves/          # Gestão de Chaves Pix
+│   ├── transacoes/      # Fluxo de envio de Pix
+│   ├── perfil/          # Perfil do Usuário
+│   └── page.tsx         # Home Pública
+├── components/          # Componentes Reutilizáveis
+├── functions/           # Funções utilitárias (Logout, GetPayload)
+├── services/            # Configuração do Axios (API)
+├── Model/               # Tipagens e Schemas Zod
+└── middleware.ts        # Proteção de Rotas
+cypress/                 # Testes E2E
+```
+
+## 👥 Equipe
+
+Projeto desenvolvido por Eduardo dos Santos de Camargo. O backend foi desenvolvido em coperação com Vitória Aparecida dos Santos.
