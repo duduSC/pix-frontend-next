@@ -7,6 +7,7 @@ import React, { Suspense, useEffect, useState } from "react"
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react"
 import { useSearchParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 
 export function LoginContent() {
@@ -78,7 +79,6 @@ export function LoginContent() {
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div className="space-y-4">
 
-                        {/* Campo Email */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email
@@ -129,7 +129,6 @@ export function LoginContent() {
                             )}
                         </div>
                     </div>
-
                     {/* Botão de Submit */}
                     <div>
                         <button
@@ -147,6 +146,18 @@ export function LoginContent() {
                             )}
                         </button>
                     </div>
+                    <div className="text-center mt-4">
+                        <p className="text-sm text-gray-600">
+                            Não tem uma conta?{' '}
+                            <Link
+                                href="/usuarios/form"
+                                className="font-medium justify-self-center text-indigo-600 hover:text-indigo-500 hover:underline"
+                            >
+                                Cadastre-se agora
+                            </Link>
+                        </p>
+                    </div>
+                    
                 </form>
             </div>
         </div>

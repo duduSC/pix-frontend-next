@@ -4,10 +4,10 @@
     import { ChaveSchema, chaveSchema, PayloadSchema } from "@/Model/models";
     import api from "@/services/api/api";
     import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
     import React, { useEffect } from "react";
     import { useForm } from "react-hook-form"
 
-    // Componente simples de erro
     const ErrorMessage = ({ error }: { error?: string }) => {
         if (!error) return null;
         return <p className="text-red-500 text-xs mt-1 font-medium">{error}</p>;
@@ -17,7 +17,7 @@
         const [statusMessage, setStatusMessage] = React.useState<{ type: 'success' | 'error', text: string } | null>(null);
         const [payload, setPayload] = React.useState<PayloadSchema>()
         const [isLoadingUser, setIsLoadingUser] = React.useState(true);
-
+        const router = useRouter()
         const {
             register,
             handleSubmit,
@@ -63,6 +63,7 @@
 
                 if (resp.status === 201) {
                     setStatusMessage({ type: 'success', text: "Chave Pix cadastrada com sucesso!" });
+                    router.push("/chaves")
                     setIsLoadingUser(false)
                     reset();
                 } else {
@@ -89,7 +90,6 @@
 
                     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                         <div className="bg-white py-12 px-4 shadow sm:rounded-lg sm:px-10 flex flex-col items-center justify-center">
-                            {/* Spinner animado com Tailwind */}
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
                             <p className="mt-4 text-gray-500 text-sm font-medium">Carregando dados do usuário...</p>
                         </div>
@@ -118,7 +118,6 @@
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                     <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
 
-                        {/* Mensagem de Status (Sucesso ou Erro) */}
                         {statusMessage && (
                             <div className={`mb-4 p-4 rounded-md border ${statusMessage.type === 'success'
                                     ? 'bg-green-50 border-green-200 text-green-700'
@@ -130,7 +129,6 @@
 
                         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 
-                            {/* Campo Tipo */}
                             <div>
                                 <label htmlFor="tipo" className="block text-sm font-medium text-gray-700">
                                     Tipo da Chave

@@ -24,7 +24,6 @@ export default function MyChavesPage() {
     const [loading, setLoading] = useState(false);
     const [copiedId, setCopiedId] = useState<string | null>(null);
     const router = useRouter()
-    // --- BUSCAR CHAVES ---
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -55,22 +54,18 @@ export default function MyChavesPage() {
         fetchData();
     }, []);
 
-    // --- AÇÃO: COPIAR CHAVE ---
     const handleCopy = (text: string, id: string) => {
         navigator.clipboard.writeText(text);
         setCopiedId(id);
         setTimeout(() => setCopiedId(null), 2000);
     };
 
-    // --- AÇÃO: DELETAR CHAVE ---
     const handleDelete = async (chaveValor: string) => {
         if (!confirm('Tem certeza que deseja excluir esta chave Pix?')) return;
 
         try {
-            // Ajuste aqui se o endpoint esperar o ID da chave ou o valor da chave
             await api.delete(`/chaves/${chaveValor}`);
 
-            // Remove da lista visualmente
             setChaves((prev) => prev.filter((chave) => chave.chave !== chaveValor));
         } catch (err) {
             console.error(err);
@@ -78,18 +73,16 @@ export default function MyChavesPage() {
         }
     };
 
-    // --- HELPER: LABEL AMIGÁVEL ---
     const getChaveLabel = (tipo: string) => {
         switch (tipo) {
             case 'E': return 'E-mail';
             case 'T': return 'Telefone';
             case 'C': return 'CPF/CNPJ';
             case 'A': return 'Chave Aleatória';
-            default: return tipo; // Retorna o valor original se não mapeado
+            default: return tipo;
         }
     };
 
-    // --- HELPER: ÍCONE POR TIPO (ENUM) ---
     const getChaveIcon = (tipo: string) => {
         switch (tipo) {
             case 'E': return <Mail size={20} />;
@@ -100,7 +93,6 @@ export default function MyChavesPage() {
         }
     };
 
-    // --- HELPER: COR DO BADGE POR TIPO (ENUM) ---
     const getBadgeColor = (tipo: string) => {
         switch (tipo) {
             case 'E': return 'bg-blue-100 text-blue-700 border-blue-200';
@@ -126,7 +118,6 @@ export default function MyChavesPage() {
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
 
-                {/* Cabeçalho da Página */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">

@@ -2,20 +2,19 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 import {z} from "zod";
 
 export const userSchema = z.object({
-    id: z.number().optional(),
-    cpfcnpj: z.string().transform((val) => {return String(val).replace(/\D/g, '')}).refine((val)=>(val.length ===11|| val.length === 14),"CPF/CNPJ tem de ser válidos"),
-    nome: z.string().min(1,"Preencha o campo").trim(),
-    telefone: z.string().min(1,"Preencha o campo").trim(),
-    rua: z.string().min(1,"Preencha o campo"),
-    bairro: z.string().min(1,"Preencha o campo"),
-    cidade: z.string().min(1,"Preencha o campo"),
-    conta: z.object({
-        nroConta : z.coerce.number("Preencha o campo"),
-        saldo: z.coerce.number().default(0)
-    }),
-    email: z.email('Email inválido'),
-    password: z.string().min(1,"Preencha o campo")
-})
+  nome: z.string().min(3, "Nome completo é obrigatório"),
+  email: z.string().email("Digite um e-mail válido"),
+  password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
+  cpfcnpj: z.string().min(11, "CPF ou CNPJ inválido"),
+  telefone: z.string().min(10, "Telefone obrigatório"),
+  cidade: z.string().min(2, "Cidade é obrigatória"),
+  bairro: z.string().min(2, "Bairro é obrigatório"),
+  rua: z.string().min(3, "Rua/Logradouro é obrigatório"),
+  conta: z.object({
+    nroConta: z.coerce.number("Deve ser um número"),
+    saldo: z.coerce.number("Deve ser um número").optional()
+  })
+});
 export type UserSchema = z.infer<typeof userSchema>;
 
 export const payloadSchema = z.object({

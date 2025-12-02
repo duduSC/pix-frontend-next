@@ -154,7 +154,7 @@ export default function Home() {
       </main>
 
       <footer className="w-full py-6 text-center text-gray-400 text-sm">
-        <p>&copy; 2024 Projeto Pix.</p>
+        <p>&copy; 2025 Projeto Pix.</p>
       </footer>
     </div>
   );
