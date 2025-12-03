@@ -124,3 +124,8 @@ cypress/                 # Testes E2E
 ## 👥 Equipe
 
 Projeto desenvolvido por Eduardo dos Santos de Camargo. O backend foi desenvolvido em coperação com Vitória Aparecida dos Santos.
+
+### Vídeo da Apresentação
+[Clique aqui](https://youtu.be/t9gYc0aEl0E)
+
+[Clique aqui se não der](https://drive.google.com/file/d/1eA7xy9X2R1ZKjB37Pr3Onfo1Fn8RRpUQ/view?usp=sharing)
